@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project_name }}: 405 - Method is not allowed!!!</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .message {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .home-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0078d7;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .home-link:hover {
+            background-color: #005a9e;
+        }
+
+        /* Weather Themes */
+        body.sunny {
+            background: linear-gradient(to bottom, #FFD700, #FF4500);
+        }
+        body.rainy {
+            background: linear-gradient(to bottom, #87CEEB, #4682B4);
+        }
+        body.snowy {
+            background: linear-gradient(to bottom, #FFFFFF, #B0E0E6);
+        }
+        body.cloudy {
+            background: linear-gradient(to bottom, #B0C4DE, #708090);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p class="error-code">405</p>
+    <p class="message">Method {{ method }} is not allowed for this page!!!</p>
+</div>
+
+<script src="{% static 'js/randomWeatherStyle.js' %}"></script>
+</body>
+</html>
