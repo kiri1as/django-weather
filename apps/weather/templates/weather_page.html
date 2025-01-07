@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f8fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #333;
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container form p {
+        margin-bottom: 1rem;
+    }
+
+    .form-container form input {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccd6dd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .form-container form input:focus {
+        border-color: #1da1f2;
+    }
+
+    .form-container form button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 10px;
+    }
+
+    .form-container form button:hover {
+        background-color: #45a049;
+    }
+
+    .weather-info {
+        margin-top: 1.5rem;
+        text-align: left;
+        color: #657786;
+    }
+
+    .weather-info-title {
+        text-align: center;
+    }
+
+    .weather-info p {
+        margin: 0.5rem 0;
+    }
+
+    .form-container form .errorlist {
+        color: red;
+        margin-bottom: 1rem;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    .button-container button {
+        padding: 5px;
+        background-color: #4682B4;
+        color: white;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+</style>
+
+<body>
+<div class="form-container">
+    <h2>Weather</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Get weather</button>
+    </form>
+
+    <div class="weather-info">
+        {% if weather_data %}
+        <h3 class="weather-info-title">
+            Weather for {{ weather_data.name }}
+        </h3>
+        <p>Temperature: {{ weather_data.main.temp }} °C</p>
+        <p>Weather: {{ weather_data.weather.0.description }}</p>
+        <p>Humidity: {{ weather_data.main.humidity }}%</p>
+        <p>Wind speed: {{ weather_data.wind.speed }} м/с</p>
+        {% endif %}
+    </div>
+
+    <div class="button-container">
+        <a href="/weather/history"> <button>View your requests history</button> </a>
+    </div>
+
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" style="margin-top: 20px;">Logout</button>
+    </form>
+</div>
+</body>
+<script src="{% static 'js/timeDependentGradientTheme.js' %}"></script>
+{% endblock %}

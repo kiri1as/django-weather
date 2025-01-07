@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f2f2f2;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .history-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 600px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .created-at-info {
+        padding-bottom: 15px;
+        font-style: italic;
+    }
+
+    .weather-item {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        padding: 5px 10px;
+        margin: 0 5px;
+        border: 1px solid #ccc;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .pagination .current {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+    }
+
+    .navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navigation button {
+        background-color: navy;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        padding: 0.5rem;
+    }
+
+
+
+</style>
+
+<body>
+<div class="history-container">
+
+    <div class="navigation">
+            <a href="/weather/current"><button>View Current Weather</button></a>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+    </div>
+
+    <h2>Requests history for user {{ request.user.username }}</h2>
+    {% for item in page_obj %}
+    <div class="weather-item">
+        <h3>Location: {{ item.city }}</h3>
+        <p class="created-at-info">Created at: {{ item.created_at }}</p>
+
+        <p>Temp: {{ item.temperature }} °C</p>
+        <p>Weather: {{ item.description }}</p>
+        <p>Humidity: {{ item.humidity }}%</p>
+        <p>Wind speed: {{ item.wind_speed }} м/с</p>
+
+    </div>
+    {% endfor %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="current">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+</div>
+</body>
+<script src="{% static 'js/timeDependentGradientTheme.js' %}"></script>
+{% endblock %}

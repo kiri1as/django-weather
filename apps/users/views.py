@@ -1,9 +1,8 @@
 import os
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.template.defaultfilters import title
 
 from weathersite.utils import AllowedMethods
 from .forms import UserRegistrationForm, UserLoginForm
@@ -35,7 +34,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f'Welcome, {username}!')
-                return redirect('home')
+                return redirect('weather-current')
             else:
                 messages.error(request, 'Invalid username or password!')
         else:
