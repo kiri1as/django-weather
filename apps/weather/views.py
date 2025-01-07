@@ -6,10 +6,10 @@ from django.template.response import TemplateResponse
 from weathersite.utils import AllowedMethods
 
 
-@AllowedMethods(['PUT'])
+@AllowedMethods(['GET'])
 def homepage_view(request:HttpRequest) -> HttpResponse:
     return TemplateResponse(
         request=request,
         template='home_page.html',
-        context={'project_name': os.getenv('PROJECT_NAME')}
+        context={'base_title': os.getenv('PROJECT_NAME'), 'page_title': 'Home Page'}
     )

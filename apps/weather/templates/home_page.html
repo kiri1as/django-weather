@@ -1,104 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ project_name }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+{% extends "base.html" %}
+{% load static %}
 
-        #app {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            transition: background 0.5s, color 0.5s;
-        }
+{% block title %}
+{{page_title}}
+{% endblock %}
 
-        h1 {
-            margin: 0 0 20px;
-        }
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
+    #app {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        transition: background 0.5s, color 0.5s;
+    }
 
-        button:hover {
-            background-color: #555;
-            color: #fff;
-        }
-    </style>
-</head>
+    h1 {
+        margin: 0 0 20px;
+    }
+
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+        background-color: #555;
+        color: #fff;
+    }
+</style>
+
 <body>
-    <div id="app">
-        <h1>Welcome to {{ project_name }}</h1>
-        <button id="login">Login</button>
-        <button id="register">Register</button>
-    </div>
-
-    <script>
-        const app = document.getElementById('app');
-
-        function applyRandomWeatherGradient() {
-            const weatherGradients = [
-                {
-                    background: 'linear-gradient(to right, #87CEEB, #00BFFF)', // Clear sky
-                    color: '#000'
-                },
-                {
-                    background: 'linear-gradient(to right, #778899, #2F4F4F)', // Cloudy
-                    color: '#fff'
-                },
-                {
-                    background: 'linear-gradient(to right, #4682B4, #1E90FF)', // Rainy
-                    color: '#fff'
-                },
-                {
-                    background: 'linear-gradient(to right, #FFD700, #FFA500)', // Sunny
-                    color: '#000'
-                },
-                {
-                    background: 'linear-gradient(to right, #708090, #2C3E50)', // Stormy
-                    color: '#fff'
-                }
-            ];
-
-            const randomGradient = weatherGradients[Math.floor(Math.random() * weatherGradients.length)];
-            app.style.background = randomGradient.background;
-            app.style.color = randomGradient.color;
-
-            const buttons = document.querySelectorAll('button');
-            
-			buttons.forEach(button => {
-                backgroundColor = randomGradient.color;
-				button.style.backgroundColor = backgroundColor;
-				
-				if (backgroundColor == '#000') {
-					button.style.color = '#fff'
-				}
-				
-            });
-        }
-
-        // Apply random weather gradient on page load
-        applyRandomWeatherGradient();
-    </script>
+<div id="app">
+    <h1>Welcome to {{ project_name }}</h1>
+    <button id="login">Login</button>
+    <button id="register">Register</button>
+</div>
 </body>
-</html>
+
+<script src="{% static 'js/randomGradientWeatherTheme.js' %}"></script>
+{% endblock %}

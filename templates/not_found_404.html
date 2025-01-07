@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+
+{% block title %}
+ERROR: 404 - NOT FOUND
+{% endblock %}
+
+{% block content %}
     <style>
-        /* General Styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -63,14 +63,14 @@
             background: linear-gradient(to bottom, #B0C4DE, #708090);
         }
     </style>
-</head>
+
 <body>
     <div class="container">
         <p class="error-code">404</p>
         <p class="message">Oops! The page you are looking for is lost in the weather!</p>
-        <a href="/static" class="home-link">Go Back Home</a>
+        <a href="" class="home-link">Go Back Home</a>
     </div>
-
-    <script src="{% static 'js/randomWeatherStyle.js' %}"></script>
 </body>
-</html>
+
+<script src="{% static 'js/weatherThemeErrorPage.js' %}"></script>
+{% endblock %}

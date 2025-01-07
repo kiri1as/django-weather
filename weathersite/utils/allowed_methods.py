@@ -19,7 +19,7 @@ class AllowedMethods:
                     content=render(
                         request,
                         'not_allowed_405.html',
-                        context={'method': method, 'project_name': os.getenv('PROJECT_NAME')}
+                        context={'method': method, 'base_title': os.getenv('PROJECT_NAME')}
                     )
                 )
             return view_func(request, *args, **kwargs)
