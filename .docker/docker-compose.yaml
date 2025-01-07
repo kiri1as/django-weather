@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: pg_django_app
+    restart: always
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: dj12345
+      POSTGRES_DB: djangoapp
+    volumes:
+      - ./.pg_data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+

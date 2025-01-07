@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block base-title %}
+        {{base_title}}
+        {% endblock %}
+
+        {% block title %}
+        <!-- page title-->
+        {% endblock %}
+    </title>
+    <link rel="icon" href="{% static 'images/favicon/favicon.ico' %}" type="image/x-icon">
+
+</head>
+    {% block content %}
+    <!-- Templates content -->
+    {% endblock %}
+</html>

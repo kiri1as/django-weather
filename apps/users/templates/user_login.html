@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f8fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #1da1f2;
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container form label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .form-container form input {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccd6dd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .form-container form input:focus {
+        border-color: #1da1f2;
+    }
+
+    .form-container form button {
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .form-container form button:hover {
+        background-color: #0d8ce0;
+    }
+
+    .form-container p {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #657786;
+    }
+
+    .form-container p a {
+        color: #1da1f2;
+        text-decoration: none;
+    }
+
+    .form-container p a:hover {
+        text-decoration: underline;
+    }
+
+    .form-container form .field-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+    .form-container form .errorlist {
+        color: red;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="{% static 'js/timeDependentGradientTheme.js' %}"></script>
+{% endblock %}

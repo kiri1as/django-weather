@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+ERROR: 404 - NOT FOUND
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .message {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .home-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0078d7;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .home-link:hover {
+            background-color: #005a9e;
+        }
+
+        /* Weather Themes */
+        body.sunny {
+            background: linear-gradient(to bottom, #FFD700, #FF4500);
+        }
+        body.rainy {
+            background: linear-gradient(to bottom, #87CEEB, #4682B4);
+        }
+        body.snowy {
+            background: linear-gradient(to bottom, #FFFFFF, #B0E0E6);
+        }
+        body.cloudy {
+            background: linear-gradient(to bottom, #B0C4DE, #708090);
+        }
+    </style>
+
+<body>
+    <div class="container">
+        <p class="error-code">404</p>
+        <p class="message">Oops! The page you are looking for is lost in the weather!</p>
+        <a href="/" class="home-link">Go Back Home</a>
+    </div>
+</body>
+
+<script src="{% static 'js/weatherThemeErrorPage.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{page_title}}
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #app {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        transition: background 0.5s, color 0.5s;
+    }
+
+    h1 {
+        margin: 0 0 20px;
+    }
+
+    button {
+        text-decoration: none;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+        background-color: #555;
+        color: #fff;
+    }
+</style>
+
+<body>
+<div id="app">
+    <h1>Welcome to {{ project_name }}</h1>
+    <a id="login" href="/users/login">
+        <button class="action-button">Login</button>
+    </a>
+    <a id="register" href="/users/register">
+        <button class="action-button">Register</button>
+    </a>
+</div>
+</body>
+
+<script src="{% static 'js/randomGradientWeatherTheme.js' %}"></script>
+{% endblock %}

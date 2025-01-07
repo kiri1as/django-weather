@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f8fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .registration-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .registration-container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #1da1f2;
+    }
+
+    .registration-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .registration-container form label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .registration-container form input {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccd6dd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .registration-container form input:focus {
+        border-color: #1da1f2;
+    }
+
+    .registration-container form button {
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .registration-container form button:hover {
+        background-color: #0d8ce0;
+    }
+
+    .registration-container p {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #657786;
+    }
+
+    .registration-container p a {
+        color: #1da1f2;
+        text-decoration: none;
+    }
+
+    .registration-container p a:hover {
+        text-decoration: underline;
+    }
+
+    .registration-container form .field-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+    .registration-container form .errorlist {
+        color: red;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="registration-container">
+    <h1>Account creation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field-wrapper">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    <p>Have an acount? <a href="/users/login">Login</a></p>
+</div>
+
+<script src="{% static 'js/timeDependentGradientTheme.js' %}"></script>
+{% endblock %}
