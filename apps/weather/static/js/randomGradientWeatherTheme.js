@@ -25,7 +25,7 @@ function applyRandomGradientTheme() {
     const app = document.getElementById('app');
     let rnd = Math.random() * WEATHER_GRADIENTS.length;
     const randomGradient = WEATHER_GRADIENTS[Math.floor(rnd)];
-    const buttons = document.querySelectorAll('button');
+    const buttons = document.getElementsByClassName('action-button');
 
     app.style.background = randomGradient.background;
     app.style.color = randomGradient.color;

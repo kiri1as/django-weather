@@ -33,6 +33,7 @@
     }
 
     button {
+        text-decoration: none;
         margin: 10px;
         padding: 10px 20px;
         font-size: 16px;
@@ -51,8 +52,12 @@
 <body>
 <div id="app">
     <h1>Welcome to {{ project_name }}</h1>
-    <button id="login">Login</button>
-    <button id="register">Register</button>
+    <a id="login" href="/users/login">
+        <button class="action-button">Login</button>
+    </a>
+    <a id="register" href="/users/register">
+        <button class="action-button">Register</button>
+    </a>
 </div>
 </body>
 

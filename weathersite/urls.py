@@ -14,11 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+
+import weathersite.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('apps.users.urls')),
     path('', include('apps.weather.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [path('404-debug/', weathersite.views.page_not_found_view, name='404-debug')]
+
+handler404 = 'weathersite.views.page_not_found_view'
+

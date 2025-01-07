@@ -19,7 +19,7 @@
         height: 100vh;
     }
 
-    .registration-container {
+    .form-container {
         background-color: #ffffff;
         padding: 2rem;
         border-radius: 10px;
@@ -28,25 +28,25 @@
         max-width: 400px;
     }
 
-    .registration-container h1 {
+    .form-container h2 {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
         text-align: center;
         color: #1da1f2;
     }
 
-    .registration-container form {
+    .form-container form {
         display: flex;
         flex-direction: column;
     }
 
-    .registration-container form label {
+    .form-container form label {
         font-weight: bold;
         margin-bottom: 0.5rem;
         color: #333;
     }
 
-    .registration-container form input {
+    .form-container form input {
         margin-bottom: 1rem;
         padding: 0.8rem;
         font-size: 1rem;
@@ -55,11 +55,11 @@
         outline: none;
     }
 
-    .registration-container form input:focus {
+    .form-container form input:focus {
         border-color: #1da1f2;
     }
 
-    .registration-container form button {
+    .form-container form button {
         background-color: #1da1f2;
         color: white;
         border: none;
@@ -70,52 +70,45 @@
         transition: background-color 0.2s;
     }
 
-    .registration-container form button:hover {
+    .form-container form button:hover {
         background-color: #0d8ce0;
     }
 
-    .registration-container p {
+    .form-container p {
         text-align: center;
         margin-top: 1rem;
         font-size: 0.9rem;
         color: #657786;
     }
 
-    .registration-container p a {
+    .form-container p a {
         color: #1da1f2;
         text-decoration: none;
     }
 
-    .registration-container p a:hover {
+    .form-container p a:hover {
         text-decoration: underline;
     }
 
-    .registration-container form .field-wrapper {
+    .form-container form .field-wrapper {
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
     }
 
-    .registration-container form .errorlist {
+    .form-container form .errorlist {
         color: red;
         margin-bottom: 1rem;
     }
 </style>
 
-<div class="registration-container">
-    <h1>Account creation</h1>
-    <form method="post">
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="POST">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="field-wrapper">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {{ field.errors }}
-        </div>
-        {% endfor %}
+        {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <p>Have an acount? <a href="/users/login">Login</a></p>
 </div>
 
 <script src="{% static 'js/timeDependentGradientTheme.js' %}"></script>
